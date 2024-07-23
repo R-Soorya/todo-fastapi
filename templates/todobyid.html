@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Fast API</title>
+</head>
+<body>  
+    {% if task %} 
+    <div class="container">
+        <h1 class="my-4">ToDo List</h1>
+        <table class="table table-borderd">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.status }}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    <center>
+        {% if no_task %}
+        <p>{{no_task}}</p>
+        {% endif%} 
+        <a href="{{url_for('home')}}">Home Page</a>
+    </center>
+</body>
+</html>

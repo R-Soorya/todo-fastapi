@@ -3,13 +3,13 @@ from typing import List
 
 class ToDoBase(BaseModel):
     title : str
-    status : bool
+    status : str
 
 class CreateToDo(ToDoBase):
     pass
 
-class UpdateToDo(ToDoBase):
-    pass
+class UpdateToDo(BaseModel):
+    status : str
 
 class ToDo(ToDoBase):
     id : int

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast API</title>
+</head>
+<body>
+    <center>
+    <!-- check List -->
+    <h1>Check Your To-Do list</h1>
+    <form action="/todo" method="post">
+        <button type="submit">Check all</button><br><br>
+    </form>
+
+    <!-- check by id -->
+    <form action="/todo-by-id" method="post">
+        <input type="number" name="id"  placeholder="ID"><br><br>
+        <button type="submit">Check by ID</button><br><br>
+    </form> 
+
+    <!-- create todo -->
+    <form action="/create" method="post"> 
+        <h1>Create ToDo</h1>
+        Title : <input type="text" name="title" id="title" required><br><br>
+        Status : <select name="status" id="status">
+            <option value="Incomplete">Incomplete</option>
+            <option value="Completed">False</option>
+        </select><br><br>
+        <button type="submit">Submit</button>
+    </form> 
+    </center>
+
+</body>
+</html>

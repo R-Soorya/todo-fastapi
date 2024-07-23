@@ -16,27 +16,29 @@ def getTodoById(id, db : Session):
 
 def createTodoList(request : schemas.CreateToDo, db : Session):
     new_task = ToDo(title = request.title, status = request.status)
+    tasks = getTodoList(db)
+    tasks = [task.title for task in tasks]
+    if new_task.title in tasks:
+        new_task = None
+        return
     db.add(new_task)
     db.commit()
     db.refresh(new_task)
     return new_task
     
 
-def updateTodoList(task : str, request : schemas.UpdateToDo ,db : Session):
-    todo = db.query(ToDo).filter(ToDo.title == task).first()
-    if not todo:
-        return {"Error":"Task not found"}
-    todo.status = request.status
+def updateTodoList(status, task_id ,db : Session):
+    todo = db.query(ToDo).filter(ToDo.id == task_id).first()
+    todo.status = status
     db.commit()
     db.refresh(todo)
     return todo
 
 
-def delete(task : str, db : Session):
-    task = db.query(ToDo).filter(ToDo.title == task).first()
+def delete(task_id : int, db : Session):
+    task = db.query(ToDo).filter(ToDo.id == task_id).first()
     if not task:
         return {"Error":"Task not found"}
     db.delete(task)
     db.commit()
-    return task
 

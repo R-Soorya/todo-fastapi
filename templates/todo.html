@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Fast API</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">ToDo List</h1>
+        <table class="table table-borderd">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Update</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.status }}</td>         
+                           
+                    <td>
+                        <form action="/delete" method="post">
+                            <input type="hidden" name="task_id" id="task_id" value="{{task.id}}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/update" method="post">
+                            <input type="hidden" name="task_id" id="task_id" value="{{task.id}}">
+                            <select name="status" id="status">
+                                <option value="Completed">Completed</option>
+                                <option value="Incomplete">Incomplete</option>    
+                            </select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <center>
+        {% if task %}
+        <p>Task exists</p>
+        {% endif %}
+    <a href="{{url_for('home')}}">Home Page</a>
+</center>
+</body>
+</html>

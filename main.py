@@ -51,6 +51,7 @@ async def update(task:str, request:schemas.UpdateToDo ,db:Session = Depends(get_
     return todo
 
 
+
 @app.delete("/{task}", response_model=schemas.ToDo)
 async def delete(task:str, db:Session = Depends(get_db)):
     task = crud.delete(task, db)
